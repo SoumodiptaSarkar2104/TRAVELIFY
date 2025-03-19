@@ -1,0 +1,59 @@
+{% load static %} <!-- Add this line at the top of your template -->
+
+<!-- reviews start -->
+<section id="reviews" class="reviews">
+  <div class="section-header">
+      <h2>Client Reviews</h2>
+      <p>What our clients say about us</p>
+  </div><!--/.section-header-->
+
+  <!-- Review Submission Form -->
+  <div class="review-form">
+      <h3>Submit Your Review</h3>
+      <form method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}  <!-- Render the form fields here -->
+          <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+              Submit Review
+          </button>
+      </form>
+  </div>
+
+  <!-- Display Existing Reviews -->
+  <div class="reviews-content">
+      <div class="testimonial-carousel">
+          {% for review in reviews %}
+          <div class="single-testimonial-box">
+              <div class="testimonial-description">
+                  <div class="testimonial-info">
+                      <div class="testimonial-img">
+                          <img src="{% static 'assets/images/clients/default-avatar.png' %}" alt="client">
+                      </div><!--/.testimonial-img-->
+                      <div class="testimonial-person">
+                          <h2>{{ review.name }}</h2>
+                          <h4>{{ review.location }}</h4>
+                          {% load custom_filters %}
+
+                          <div class="testimonial-person-star">
+                              {% for i in review.rating|rangefilter %}
+                                    <i class="fa fa-star"></i>
+                              {% endfor %}
+                              {% for i in 5|add:"-review.rating"|rangefilter %}
+                                   <i class="fa fa-star-o"></i>
+                              {% endfor %}
+                          </div>
+
+                      </div><!--/.testimonial-person-->
+                  </div><!--/.testimonial-info-->
+                  <div class="testimonial-comment">
+                      <p>{{ review.comment }}</p>
+                  </div><!--/.testimonial-comment-->
+              </div><!--/.testimonial-description-->
+          </div><!--/.single-testimonial-box-->
+          {% empty %}
+          <p>No reviews yet. Be the first to submit a review!</p>
+          {% endfor %}
+      </div><!--/.testimonial-carousel-->
+  </div><!--/.reviews-content-->
+</section><!--/.reviews-->
+<!-- reviews end -->

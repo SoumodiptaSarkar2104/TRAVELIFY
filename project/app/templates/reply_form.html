@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reply to Comment</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 20px;">
+
+    <h1 style="color: #2196F3;">Reply to Comment</h1>
+    <p><strong>{{ comment.description }}</strong></p>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label for="reply_description" style="font-weight: bold;">Your Reply:</label><br>
+        <textarea id="reply_description" name="reply_description" rows="4" cols="50" required style="margin-top: 10px; margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea><br>
+        <button type="submit" style="background-color: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Submit Reply</button>
+    </form>
+</body>
+</html>

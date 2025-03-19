@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Data</title>
+    <script>
+        function deleteData() {
+            const id = document.getElementById('data-id').value;
+
+            fetch('http://localhost:5000/delete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: id })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Data deleted successfully!');
+                } else {
+                    alert('Failed to delete data!');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</head>
+<body>
+    <h1>Delete Data from Database</h1>
+    <form onsubmit="event.preventDefault(); deleteData();">
+        <label for="data-id">Data ID:</label>
+        <input type="text" id="data-id" name="data-id" required>
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>

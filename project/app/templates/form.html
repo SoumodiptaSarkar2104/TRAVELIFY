@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Information Form</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f7f8;">
+
+    
+
+    <form action="reg" method="post" style="max-width: 500px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        {% csrf_token %}
+        <!-- Name -->
+        <label  style="display: block; margin-bottom: 5px; color: #555;">Name</label>
+        <input type="text"  name="Name" placeholder="name" style="width: 100%; padding: 5px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;"/>
+
+        <!-- Date of Birth -->
+        <label for="dob" style="display: block; margin-bottom: 5px; color: #555;">DOB</label>
+        <input type="date" id="dob" name="a2" required style="width: 100%; padding: 5px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;"/>
+
+        <!-- Email -->
+        <label for="email" style="display: block; margin-bottom: 5px; color: #555;">Email</label>
+        <input type="email" id="email" name="a3" required style="width: 100%; padding: 5px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;"/>
+
+        <!-- Contact -->
+        <label for="contact" style="display: block; margin-bottom: 5px; color: #555;">Contact</label>
+        <input type="tel" id="contact" name="a4" required style="width: 100%; padding: 5px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;"/>
+
+        <!-- Place -->
+        <label for="place" style="display: block; margin-bottom: 5px; color: #555;">Place</label>
+        <input type="text" id="place" name="a5" required style="width: 100%; padding: 5px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;"/>
+
+        <!-- Gender -->
+        <label style="display: block; margin-bottom: 5px; color: #555;">Gender</label>
+        <div style="margin-bottom: 15px;">
+            <input type="radio" id="male" name="a6" value="male" required style="margin-right: 5px;"/>
+            <label for="male" style="margin-right: 20px;">Male</label>
+            <input type="radio" id="female" name="a6" value="female" required style="margin-right: 5px;"/>
+            <label for="female" style="margin-right: 20px;">Female</label>
+            <input type="radio" id="other" name="a6" value="other" required style="margin-right: 5px;"/>
+            <label for="other">Other</label>
+        </div>
+
+        <!-- Country -->
+        <label for="country" style="display: block; margin-bottom: 5px; color: #555;">Country</label>
+        <select id="country" name="a7" required style="width: 100%; padding: 10px; margin-bottom: 25px; border: 1px solid #ccc; border-radius: 4px;">
+            <option value="">Select Country</option>
+            <option value="USA">United States</option>
+            <option value="Uk">United Kingdom</option>
+            <option value="INDIA">INDIA</option>
+            <!-- Add more countries as needed -->
+        </select>
+        <!-- Password -->
+        <label for="password" style="display: block; margin-bottom: 5px; color: #555;">Password</label>
+        <input type="password" id="password" name="a8" required style="width: 100%; padding: 5px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;"/>
+
+        <!-- Submit Button -->
+        
+            <button type="submit" style="width: 100%; padding: 5px; background-color: #5fcf80; color: #fff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;">
+            Submit
+            </button>
+        
+        <a href="./login" style="text-decoration: none;"><b><p style="text-align: center; ">Click Here for Login</p></b></a>
+
+    </form>
+
+</body>
+</html>

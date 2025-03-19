@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFORMATION</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Table styling */
+        table {
+            width: 80%;
+            max-width: 1200px;
+            margin: 30px auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background-color: #fff;
+            border-collapse: collapse;
+        }
+
+        /* Header row styling */
+        th {
+            background-color: #34495e;
+            color: #fff;
+            padding: 12px;
+            text-align: left;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Table row styling */
+        td {
+            padding: 12px;
+            font-size: 14px;
+            color: #555;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        /* Hover effect for rows */
+        tr:hover {
+            background-color: #f1f1f1;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Action button styles */
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Edit button */
+        .edit-btn {
+            background-color: #2980b9;
+            color: #fff;
+            border: none;
+        }
+
+        .edit-btn:hover {
+            background-color: #3498db;
+        }
+
+        /* Delete button */
+        .delete-btn {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+        }
+
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Link styles */
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #f39c12;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            table {
+                width: 95%;
+            }
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>DOB</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Place</th>
+            <th>Gender</th>
+            <th>Country</th>
+            <th>Password</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for i in x %}
+        <tr>
+            <td>{{i.Name}}</td>
+            <td>{{i.DOB}}</td>
+            <td>{{i.Email}}</td>
+            <td>{{i.Contact}}</td>
+            <td>{{i.Place}}</td>
+            <td>{{i.Gender}}</td>
+            <td>{{i.Country}}</td>
+            <td>{{i.Password}}</td>
+            <td>
+                <button class="edit-btn">
+                    <a href="editdata{{i.id}}"><b>Edit</b></a>
+                </button>
+            </td>
+            <form action="delete{{i.id}}" onclick="return confirm('Are you sure?')" method="post">
+                {% csrf_token %}
+                <td>
+                    <button class="delete-btn" type="submit">Delete</button>
+                </td>
+            </form>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

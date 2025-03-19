@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 48%;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .search-button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .search-button:hover {
+            background-color: #218838;
+        }
+
+        .results {
+            margin-top: 30px;
+        }
+
+        .hotel {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .hotel img {
+            width: 200px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .hotel-details {
+            flex: 1;
+            padding-left: 15px;
+        }
+
+        .hotel-name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .hotel-price {
+            font-size: 16px;
+            color: #007bff;
+        }
+
+        .pagination {
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+
+        .pagination a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Hotel Booking</h1>
+    <p>Find the best hotels for your trip!</p>
+</header>
+
+<div class="container">
+    <form id="search-form" action="{% url 'hotel_search' %}" method="GET">
+        <div>
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" value="{{ location }}" required>
+        </div>
+        <div>
+            <label for="check_in">Check-in Date</label>
+            <input type="date" id="check_in" name="check_in" value="{{ check_in }}" required>
+        </div>
+        <div>
+            <label for="check_out">Check-out Date</label>
+            <input type="date" id="check_out" name="check_out" value="{{ check_out }}" required>
+        </div>
+        <div>
+            <label for="adults">Adults</label>
+            <select id="adults" name="adults">
+                <option value="1" {% if adults == "1" %}selected{% endif %}>1 Adult</option>
+                <option value="2" {% if adults == "2" %}selected{% endif %}>2 Adults</option>
+                <option value="3" {% if adults == "3" %}selected{% endif %}>3 Adults</option>
+                <option value="4" {% if adults == "4" %}selected{% endif %}>4 Adults</option>
+            </select>
+        </div>
+        <div>
+            <label for="rooms">Rooms</label>
+            <select id="rooms" name="rooms">
+                <option value="1" {% if rooms == "1" %}selected{% endif %}>1 Room</option>
+                <option value="2" {% if rooms == "2" %}selected{% endif %}>2 Rooms</option>
+            </select>
+        </div>
+        <div>
+            <label for="currency">Currency</label>
+            <select id="currency" name="currency">
+                <option value="USD" {% if currency == "USD" %}selected{% endif %}>USD</option>
+                <option value="EUR" {% if currency == "EUR" %}selected{% endif %}>EUR</option>
+                <option value="INR" {% if currency == "INR" %}selected{% endif %}>INR</option>
+            </select>
+        </div>
+        <button type="submit" class="search-button">Search Hotels</button>
+    </form>
+
+    <div class="results">
+        {% if hotels %}
+            {% for hotel in hotels %}
+            <div class="hotel">
+                <img src="{{ hotel.image }}" alt="{{ hotel.name }}">
+                <div class="hotel-details">
+                    <div class="hotel-name">{{ hotel.name }}</div>
+                    <div class="hotel-price">${{ hotel.price }}</div>
+                    <div>{{ hotel.description }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No results found for your search.</p>
+        {% endif %}
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        {% if page > 0 %}
+        <a href="?page={{ page|add:-1 }}&location={{ location }}&check_in={{ check_in }}&check_out={{ check_out }}&adults={{ adults }}&rooms={{ rooms }}&currency={{ currency }}">Previous</a>
+        {% endif %}
+
+        {% if page < total_pages|add:-1 %}
+        <a href="?page={{ page|add:1 }}&location={{ location }}&check_in={{ check_in }}&check_out={{ check_out }}&adults={{ adults }}&rooms={{ rooms }}&currency={{ currency }}">Next</a>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>

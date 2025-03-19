@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+           padding: 2px;
+           margin: 3px;
+           background-color: crimson;
+        }
+        h1{
+            color: cornsilk;
+            background-color: black;
+            font-weight: 30px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-decoration: underline;
+            text-align: center;
+        }
+        form{
+            margin-bottom: 5px ;
+            border: 10px solid palevioletred;
+            border-radius: 15px;
+            box-sizing: border-box;
+            bottom: auto;
+            box-shadow: inset;
+            padding: 5px;
+            text-align: center;
+        }
+        button{
+            border: 7px dotted violet;
+            margin-bottom: 3px;
+            padding: 3px;
+            box-sizing: border-box;
+            background-color: black;
+            color: beige;
+        }
+    </style>
+</head>
+<body>
+  {% csrf_token %}
+    <h1>Image Uploader</h1>
+    <form action="upd" method="post" enctype="multipart/form-data">
+        <input type="text" name="b1"placeholder="enter the image name"><br><br>
+<input type="file" name="a1"placeholder="Upload the image file"><br><br>
+<button>submit</button>
+    </form>
+</body>
+</html>

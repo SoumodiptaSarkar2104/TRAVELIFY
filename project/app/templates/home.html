@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      padding: 2px;
+      margin: 5px;
+      width: auto;
+      height: 150px;
+      background-color: darkslateblue;
+      text-align: center;
+    }
+    h1{
+     color: darkgoldenrod;
+     font-size: 17px;
+     font-weight: bold;
+     font-style: inherit;
+     font: 1em ;
+     text-transform: capitalize;
+     text-decoration: solid;
+     border: solid;
+     border-width: 5px;
+     border-color: chartreuse;
+     border-radius: 10%;
+     text-align: center;
+    }
+    h1.hover{
+      color: aliceblue;
+    }
+  </style>
+</head>
+<body>
+  <h1 ><b><u>welcome to the BCT traning on django</u></b></h1>
+  <a href="list">click here</a><br>
+  <img src="{% static 'eye.jpeg' %}">
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. A non error, in corrupti ullam consectetur voluptate aspernatur hic facere rerum libero amet animi perspiciatis quibusdam, voluptatum labore cum repudiandae fuga!
+  </p>
+  <footer>Thanks to visit our site</footer>
+</body>
+</html>

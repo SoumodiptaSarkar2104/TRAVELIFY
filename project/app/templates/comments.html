@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Comments</title>
+</head>
+<body style="font-family: 'Arial', sans-serif; margin: 20px; background-color: #f9f9f9; color: #333;">
+
+    <h1 style="color: #4CAF50; text-align: center; text-shadow: 2px 2px 5px rgba(0,0,0,0.2);">Share Your Experience</h1>
+    <form method="POST" action="" style="margin-bottom: 20px; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        {% csrf_token %}
+        <label for="description" style="font-weight: bold; font-size: 16px;">Your Comment:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50" required 
+                  style="margin-top: 10px; margin-bottom: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: 100%;"></textarea><br>
+        <button type="submit" style="background-color: #4CAF50; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 16px; transition: background-color 0.3s;">
+            Add Your Comment
+        </button>
+        <a href="{% url 'chat' %}" style="background-color: #2196F3; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-size: 16px; cursor: pointer; transition: background-color 0.3s; margin-left: 10px;">Go to Chat Room</a>
+    </form>
+
+    <hr style="border: 1px solid #ddd; margin: 20px 0;">
+
+    <h2 style="color: #333; font-size: 24px;">Visitor Comments:</h2>
+    <ul style="list-style-type: none; padding: 0;">
+        {% for comment in comments %}
+            <li style="margin-bottom: 20px; padding: 15px; background-color: #fff; border: 1px solid #ddd; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <p style="margin: 0; font-size: 18px; font-weight: bold; color: #444;">{{ comment.description }}</p>
+                <p style="color: gray; font-size: 14px; margin-top: 5px;">{{ comment.timestamp }}</p>
+                <form method="POST" action="{% url 'delete_comment' comment.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background-color: #f44336; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 14px; transition: background-color 0.3s;">
+                        Delete
+                    </button>
+                </form>
+                <form method="GET" action="{% url 'reply_comment' comment.id %}" style="display: inline;">
+                    <button type="submit" style="background-color: #2196F3; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 14px; transition: background-color 0.3s; margin-left: 5px;">
+                        Add Reply
+                    </button>
+                </form>
+            </li>
+        {% empty %}
+            <p style="font-size: 16px; text-align: center; color: gray;">No comments yet. Be the first to share!</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>

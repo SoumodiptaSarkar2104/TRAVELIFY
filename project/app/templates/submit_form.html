@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #444;
+            margin-bottom: 15px;
+        }
+        .details, .car-details {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .details p, .car-details p {
+            margin: 10px 0;
+        }
+        .car-details {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Submission Details</h2>
+        <div class="details">
+            <h3>Your Details:</h3>
+            <p><strong>Rental Duration:</strong> {{ duration }} days</p>
+            <p><strong>Driver's License:</strong> {{ license }}</p>
+            <p><strong>Budget:</strong> ₹{{ budget }}</p>
+            <p><strong>Number of Persons:</strong> {{ persons }}</p>
+            <p><strong>Driver Needed:</strong> {{ driver_needed }}</p>
+        </div>
+        <div class="car-details">
+            <h3>Available Car Details:</h3>
+            <p><strong>Car Name:</strong> Sedan</p>
+            <p><strong>Seats:</strong> 5</p>
+            <p><strong>Price per Day:</strong> ₹1500</p>
+        </div>
+    </div>
+</body>
+</html>
